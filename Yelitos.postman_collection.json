@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "d311bc4c-5c6d-424a-b7f6-4aa1bd651669",
+		"name": "Yelitos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Crear producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bb57eb9-5fc5-4ff0-b734-f31e062c2f30",
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"pm.test(\"Checar subida exitosa de producto\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.nombre).to.eql(\"Fiesta\");",
+							"    pm.expect(jsonData.presentacion).to.eql(\"25kg\");",
+							"    pm.expect(jsonData.id).to.exist;",
+							"});",
+							"",
+							"pm.environment.set(\"producto_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombre\": \"Fiesta\",\n\t\"presentacion\": \"25kg\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/productos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"productos"
+					]
+				},
+				"description": "Crea un producto en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Crear entrada de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4bb57eb9-5fc5-4ff0-b734-f31e062c2f30",
+						"exec": [
+							"",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+							"});",
+							"pm.test(\"Checar subida exitosa de producto\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.cantidad).to.eql(100);",
+							"    pm.expect(jsonData.productoId).to.eql(pm.environment.get(\"producto_id\"));",
+							"    pm.expect(jsonData.id).to.exist;",
+							"});",
+							"",
+							"pm.environment.set(\"entrada_id\", pm.response.json().id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"cantidad\": 100,\n\t\"productoId\": \"{{producto_id}}\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/entradas",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"entradas"
+					]
+				},
+				"description": "Crea una entrada de producto en la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener productos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a2c49b97-7267-4267-8443-90c0b6c8afd2",
+						"exec": [
+							"pm.test(\"Recibir un arreglo de productos\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(typeof(jsonData)).to.eql('object');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/productos",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"productos"
+					]
+				},
+				"description": "Obtienes productos"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4dbe1b50-bfc5-4bbe-b133-16f38c469307",
+						"exec": [
+							"pm.test(\"Borrar producto\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.count).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/productos/{{producto_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"productos",
+						"{{producto_id}}"
+					]
+				},
+				"description": "Borra un producto de la base de datos"
+			},
+			"response": []
+		},
+		{
+			"name": "Borrar entrada de producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4dbe1b50-bfc5-4bbe-b133-16f38c469307",
+						"exec": [
+							"pm.test(\"Borrar producto\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.count).to.eql(1);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/entradas/{{entrada_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"entradas",
+						"{{entrada_id}}"
+					]
+				},
+				"description": "Borra una entrada de producto de la base de datos"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "6f83125a-a855-4a01-80eb-b9de30d1ce45",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ca85ce05-085c-42f9-9485-b2abbb0cac0c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "54b4dc01-cee3-4740-a4a1-218238075573",
+			"key": "host",
+			"value": "localhost:3000",
+			"type": "string"
+		}
+	]
+}

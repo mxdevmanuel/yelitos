@@ -1,0 +1,32 @@
+{
+  "name": "Producto",
+  "plural": "productos",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "presentacion": {
+      "type": "string",
+      "required": true
+    },
+    "creado": {
+      "type": "date"
+    }
+  },
+  "validations": [],
+  "relations": {
+    "entradas": {
+      "type": "hasMany",
+      "model": "Entrada",
+      "foreignKey": ""
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
