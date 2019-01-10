@@ -11,12 +11,23 @@
       "type": "string",
       "required": true
     },
-    "presentacion": {
+    "kgs": {
+      "type": "number",
+      "required": true
+    },
+    "logotipo": {
       "type": "string",
       "required": true
     },
+    "logotipo_imagen": {
+      "type": "string"
+    },
+    "insumos": {
+      "type": ["object"]
+    },
     "creado": {
-      "type": "date"
+      "type": "date",
+      "default": "$now"
     }
   },
   "validations": [],
