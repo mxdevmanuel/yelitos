@@ -42,5 +42,9 @@
   "Entrada": {
     "dataSource": "mongo",
     "public": true
+  },
+  "Insumo": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
