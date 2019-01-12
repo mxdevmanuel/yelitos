@@ -16,12 +16,11 @@
       "required": true
     },
     "logotipo_imagen": {
-      "type": "string"
+      "type": "string",
+      "default": null
     },
     "insumos": {
-      "type": [
-        "object"
-      ]
+      "type": ["object"]
     },
     "creado": {
       "type": "date",
