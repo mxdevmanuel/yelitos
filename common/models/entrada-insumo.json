@@ -1,35 +1,33 @@
 {
-  "name": "Insumo",
-  "plural": "insumos",
+  "name": "EntradaInsumo",
+  "plural": "entradasinsumos",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
     "validateUpsert": true
   },
   "properties": {
-    "nombre": {
-      "type": "string",
+    "valor": {
+      "type": "number",
       "required": true
     },
     "cantidad": {
       "type": "number",
       "required": true
     },
-    "valor": {
-      "type": "number",
-      "required": true
-    },
-    "minimo": {
-      "type": "number",
-      "required": true
-    },
-    "creado": {
+    "hora": {
       "type": "date",
       "default": "$now"
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "insumo": {
+      "type": "belongsTo",
+      "model": "Insumo",
+      "foreignKey": ""
+    }
+  },
   "acls": [],
   "methods": {}
 }

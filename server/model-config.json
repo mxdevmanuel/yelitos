@@ -46,5 +46,9 @@
   "Insumo": {
     "dataSource": "mongo",
     "public": true
+  },
+  "EntradaInsumo": {
+    "dataSource": "mongo",
+    "public": true
   }
 }
