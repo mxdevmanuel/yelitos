@@ -4,13 +4,7 @@
     "connector": "memory"
   },
   "mongo": {
-    "host": "localhost",
-    "port": 27017,
-    "url": "",
-    "database": "yelitos",
-    "password": "",
-    "name": "mongo",
-    "user": "",
-    "connector": "mongodb"
+    "url": "${MONGODB_URI}",
+    "connector": "loopback-connector-mongodb"
   }
 }

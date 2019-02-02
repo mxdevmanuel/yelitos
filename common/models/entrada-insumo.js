@@ -13,7 +13,9 @@ module.exports = function(Entradainsumo) {
           insumo.updateAttributes(
             {
               cantidad: insumo.cantidad + ctx.instance.cantidad,
-              valor: insumo.valor + ctx.instance.valor
+              valor:
+                (insumo.valor * insumo.cantidad + ctx.instance.valor) /
+                (insumo.cantidad + ctx.instance.cantidad)
             },
             function(err, instance) {
               if (err) console.log(err);

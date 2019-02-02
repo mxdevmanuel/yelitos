@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "eslint .",
     "start": "node .",
-    "dev": "nodemon . --watch server --watch common",
+    "dev": "set ENV=development nodemon . --watch server --watch common",
     "posttest": "npm run lint"
   },
   "dependencies": {
